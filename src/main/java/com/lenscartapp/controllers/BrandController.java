@@ -1,4 +1,5 @@
 package com.lenscartapp.controllers;
+
 /**
  * @author SumanD
  *
@@ -6,6 +7,8 @@ package com.lenscartapp.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,49 +27,68 @@ public class BrandController {
 	IBrandService brandservice;
 
 	@PostMapping("/lenskart-brand")
-	Brand addbrand(Brand brand) {
-		return brandservice.addbrand(brand);
-
+	ResponseEntity<Brand> addbrand(Brand brand) {
+		Brand addbrand = brandservice.addbrand(brand);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("desc", " Brand Added successfully ");
+		return ResponseEntity.ok().headers(headers).body(addbrand);
 	}
 
 	@PutMapping("/lenskart-brand")
-	void updateBrand(Brand brand) {
+	ResponseEntity<String> updateBrand(Brand brand) {
 		brandservice.addbrand(brand);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("desc", " Brand Updated Successfully ");
+		return ResponseEntity.ok().headers(headers).body("Updated Successfully");
 	}
 
 	@DeleteMapping("/lenskart-brand/{brandId}")
-	void deleteBrand(int brandId) {
+	ResponseEntity<String> deleteBrand(int brandId) {
 		brandservice.deleteBrand(brandId);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("desc", "All Brand ");
+		return ResponseEntity.ok().headers(headers).body("Deleted Successfully");
 	}
 
 	@GetMapping("/lenskart-brand")
-	List<Brand> getAll() {
-		return brandservice.getAll();
-
+	ResponseEntity<List<Brand>> getAll() {
+		List<Brand> brandlist = brandservice.getAll();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("desc", "All Brand ");
+		return ResponseEntity.ok().headers(headers).body(brandlist);
 	}
+
 	@GetMapping("/lenskart-brand/{brandId}")
-	public Brand Viewbrand(@PathVariable("brandId") int brandid) {
-		return brandservice.getBrandById(brandid);
-		
+	public ResponseEntity<Brand> Viewbrand(@PathVariable("brandId") int brandid) {
+		Brand brand = brandservice.getBrandById(brandid);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("desc", "Added successfully ");
+		return ResponseEntity.ok().headers(headers).body(brand);
 	}
 
 	@GetMapping("/lenskart-brand/framecolor/{color}")
-	List<Brand> getByFrameColor(@PathVariable("color") String color) {
-		return brandservice.getByFrameColor(color);
-
+	ResponseEntity<List<Brand>> getByFrameColor(@PathVariable("color") String color) {
+		List<Brand> brandlist = brandservice.getByFrameColor(color);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("desc", "All Brand By Frame Color ");
+		return ResponseEntity.ok().headers(headers).body(brandlist);
 	}
 
 	@GetMapping("/lenskart-brand/name/{name}/gender/{gender}")
-	List<Brand> findByFrameModelIdAndFrameGender(@PathVariable("name") String name,
+	ResponseEntity<List<Brand>> findByFrameModelIdAndFrameGender(@PathVariable("name") String name,
 			@PathVariable("gender") String gender) {
-		return brandservice.getByNameAndFrameGender(name, gender);
-
+		List<Brand> brandlist = brandservice.getByNameAndFrameGender(name, gender);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("desc", "All Brand By Frame gender ");
+		return ResponseEntity.ok().headers(headers).body(brandlist);
 	}
-	
-	@GetMapping("/lenskart-brand/modelId/{modelId}")
-	List<Brand> findByFrameModelId(@PathVariable("modelId") int modelId) {
-		return brandservice.getByFrameModelId(modelId);
 
+	@GetMapping("/lenskart-brand/modelId/{modelId}")
+	ResponseEntity<List<Brand>> findByFrameModelId(@PathVariable("modelId") int modelId) {
+		List<Brand> brandlist = brandservice.getByFrameModelId(modelId);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("desc", "All Brand By Frame modelId ");
+		return ResponseEntity.ok().headers(headers).body(brandlist);
 	}
 
 }

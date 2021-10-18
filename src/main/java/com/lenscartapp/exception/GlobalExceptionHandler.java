@@ -1,4 +1,5 @@
 package com.lenscartapp.exception;
+
 /**
  * @author SumanD
  *
@@ -96,6 +97,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		String message = ex.getMessage();
 		LocalDateTime timestamp = LocalDateTime.now();
 		String error = "Lens Not Found";
+		ApiErrors errors = new ApiErrors(timestamp, message, HttpStatus.CONFLICT.value(), error);
+		return ResponseEntity.status(HttpStatus.CONFLICT).body(errors);
+	}
+
+	@ExceptionHandler(CategoryNotFoundException.class)
+	protected ResponseEntity<Object> handleCategoryNotFound(CategoryNotFoundException ex) {
+		String message = ex.getMessage();
+		LocalDateTime timestamp = LocalDateTime.now();
+		String error = "Category Not Found";
 		ApiErrors errors = new ApiErrors(timestamp, message, HttpStatus.CONFLICT.value(), error);
 		return ResponseEntity.status(HttpStatus.CONFLICT).body(errors);
 	}

@@ -1,4 +1,5 @@
 package com.lenscartapp.service;
+
 /**
  * @author SumanD
  *
@@ -8,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lenscartapp.exception.CategoryNotFoundException;
 import com.lenscartapp.model.Category;
 import com.lenscartapp.repository.ICategoryRepository;
 
@@ -38,18 +40,20 @@ public class ICategoryServiceImpl implements ICategoryService {
 
 	@Override
 	public List<Category> getByFrameFrameSize(String framesize) {
-		return categoryRepository.findByFrameFramesize(framesize);
+		List<Category> categorylist = categoryRepository.findByFrameFramesize(framesize);
+		if (categorylist.isEmpty()) {
+			throw new CategoryNotFoundException("Invalid frame size with category");
+		}
+		return categorylist;
 	}
 
 	@Override
 	public List<Category> getByFramecolorAndGender(String color, String gender) {
-		return categoryRepository.findByFramecolorAndGender(color, gender);
+		List<Category> categorylist = categoryRepository.findByFramecolorAndGender(color, gender);
+		if (categorylist.isEmpty()) {
+			throw new CategoryNotFoundException("Invalid frame color and gender with category");
+		}
+		return categorylist;
 	}
-
-
-
-
-
-
 
 }
