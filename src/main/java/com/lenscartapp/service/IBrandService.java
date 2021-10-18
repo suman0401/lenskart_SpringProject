@@ -17,7 +17,7 @@ public interface IBrandService {
 	Brand getBrandById(int brandid)throws BrandNotFoundException;
 	
 	List<Brand> getByFrameColor(String color) throws BrandNotFoundException;
-	List<Brand> getByFrameModelIdAndFrameGender(int modelId,String gender)throws BrandNotFoundException;
+	List<Brand> getByNameAndFrameGender(String name,String gender)throws BrandNotFoundException;
 	List<Brand> getByFrameModelId(int modelId)throws BrandNotFoundException;
 
 }

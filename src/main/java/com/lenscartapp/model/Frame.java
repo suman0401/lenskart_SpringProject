@@ -57,6 +57,7 @@ public class Frame {
 	@JoinColumn(name = "brand_id")
 	
 	private Brand brand;
+    
 	@ManyToMany(fetch = FetchType.EAGER)
 
 	@JoinTable(name = "frame_category", joinColumns = { @JoinColumn(name = "frame_id") }, inverseJoinColumns = {

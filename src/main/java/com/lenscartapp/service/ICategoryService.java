@@ -15,6 +15,7 @@ public interface ICategoryService {
 	
 	List<Category> getall();
 	
-	List<Category> findByFrameFrameSize(String framesize);
+	List<Category> getByFrameFrameSize(String framesize);
+	List<Category> getByFramecolorAndGender(String color,String gender);
 
 }

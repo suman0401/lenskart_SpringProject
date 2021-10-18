@@ -35,6 +35,7 @@ public class Category {
 	private String categoryName;
 	@Column(length = 30)
 	private String material;
+	
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "categoryList")
 	@JsonIgnore
 	private Set<Frame> frameList;

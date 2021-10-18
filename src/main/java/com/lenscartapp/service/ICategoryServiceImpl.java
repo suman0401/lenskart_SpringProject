@@ -37,8 +37,19 @@ public class ICategoryServiceImpl implements ICategoryService {
 	}
 
 	@Override
-	public List<Category> findByFrameFrameSize(String framesize) {
+	public List<Category> getByFrameFrameSize(String framesize) {
 		return categoryRepository.findByFrameFramesize(framesize);
 	}
+
+	@Override
+	public List<Category> getByFramecolorAndGender(String color, String gender) {
+		return categoryRepository.findByFramecolorAndGender(color, gender);
+	}
+
+
+
+
+
+
 
 }

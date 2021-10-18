@@ -56,10 +56,16 @@ public class BrandController {
 
 	}
 
-	@GetMapping("/lenskart-brand/modelId/{modelId}/gender/{gender}")
-	List<Brand> findByFrameModelIdAndFrameGender(@PathVariable("modelId") int modelId,
+	@GetMapping("/lenskart-brand/name/{name}/gender/{gender}")
+	List<Brand> findByFrameModelIdAndFrameGender(@PathVariable("name") String name,
 			@PathVariable("gender") String gender) {
-		return brandservice.getByFrameModelIdAndFrameGender(modelId, gender);
+		return brandservice.getByNameAndFrameGender(name, gender);
+
+	}
+	
+	@GetMapping("/lenskart-brand/modelId/{modelId}")
+	List<Brand> findByFrameModelId(@PathVariable("modelId") int modelId) {
+		return brandservice.getByFrameModelId(modelId);
 
 	}
 

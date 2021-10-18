@@ -41,16 +41,16 @@ public class IBrandServiceImpl implements IBrandService {
 	public List<Brand> getByFrameColor(String color) throws BrandNotFoundException {
 		List<Brand> brandList = brandRepository.findByFrameColor(color);
 		if (brandList.isEmpty()) {
-			throw new BrandNotFoundException("Invalid barnd with frame color");
+			throw new BrandNotFoundException("Invalid brand with frame color");
 		}
 		return brandList;
 	}
 
 	@Override
-	public List<Brand> getByFrameModelIdAndFrameGender(int modelId, String gender) throws BrandNotFoundException {
-		List<Brand> brandList = brandRepository.findByFrameModelIdAndFrameGender(modelId, gender);
+	public List<Brand> getByNameAndFrameGender(String name, String gender) throws BrandNotFoundException {
+		List<Brand> brandList = brandRepository.findByNameAndFrameGender(name, gender);
 		if (brandList.isEmpty()) {
-			throw new BrandNotFoundException("Invalid barnd with frame color");
+			throw new BrandNotFoundException("Invalid brand with frame name and gender");
 		}
 		return brandList;
 	}
@@ -59,7 +59,7 @@ public class IBrandServiceImpl implements IBrandService {
 	public List<Brand> getByFrameModelId(int modelId) throws BrandNotFoundException {
 		List<Brand> brandList = brandRepository.findByFrameModelId(modelId);
 		if (brandList.isEmpty()) {
-			throw new BrandNotFoundException("Invalid barnd with frame color");
+			throw new BrandNotFoundException("Invalid brand with frame color");
 		}
 		return brandList;
 	}

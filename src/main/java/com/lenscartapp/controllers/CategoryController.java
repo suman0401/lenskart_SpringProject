@@ -1,4 +1,5 @@
 package com.lenscartapp.controllers;
+
 /**
  * @author SumanD
  *
@@ -48,7 +49,14 @@ public class CategoryController {
 
 	@GetMapping("/lenskart-category/framesize/{framesize}")
 	List<Category> findByFrameFrameSize(@PathVariable("framesize") String framesize) {
-		return categoryService.findByFrameFrameSize(framesize);
+		return categoryService.getByFrameFrameSize(framesize);
 
 	}
+	@GetMapping("/lenskart-category/color/{color}/gender/{gender}")
+	List<Category> getByFramecolorAndGender(@PathVariable("color") String color,@PathVariable("gender") String gender) {
+		return categoryService.getByFramecolorAndGender(color,gender);
+
+	}
+
+
 }
